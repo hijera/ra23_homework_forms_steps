@@ -1,7 +1,9 @@
 import React,{useState,useEffect} from 'react';
 import PropTypes from 'prop-types';
+import StepsModel from "../models/StepsModel";
 InputForm.propTypes = {
-
+    submitFunc: PropTypes.func.isRequired,
+    editObj: PropTypes.instanceOf(StepsModel)
 };
 
 function InputForm(props) {
@@ -79,7 +81,7 @@ function InputForm(props) {
                     <label>{item.label}</label>
                     <input  key={item.name} name={item.name} value={localParams[item.valueName]} onChange={formChange} /></div>)}
                 <div className={'form-input-element'} >
-                    <div className={"empty-block"}></div>
+                    <div className={"empty-block"} />
                     <input type="submit" value={getFormValue()} />
                 </div>
             </form>

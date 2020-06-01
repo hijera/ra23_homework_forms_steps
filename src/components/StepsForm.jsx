@@ -22,7 +22,6 @@ function StepsForm(props) {
         if (!params.isEdit)
         {
             const foundItem=steps.findIndex(step=>(step.date===params.date))
-            console.log(foundItem);
                 setSteps(steps=> {
                    if (foundItem===-1) {
                        return [...steps, new StepsModel(params.date, params.dist)]
@@ -31,23 +30,26 @@ function StepsForm(props) {
                    {
                        steps[foundItem].dist=parseFloat(steps[foundItem].dist)+parseFloat(params.dist);
                        steps[foundItem].timestamp=getTimestamp(params.date);
-                       return [...steps]
+                       return [...steps];
                    }
                 });
         }
         else
         {
-            setSteps(steps.map(step=>(
-                (step.id===params.id) ?
-                    {...step,date:params.date,dist:parseFloat(params.dist),timestamp:getTimestamp(params.date)} :
-                    step )
-            ));
+
+
+            setSteps(steps=>{
+                const foundItem=steps.findIndex(step=>(step.id===params.id));
+            steps[foundItem].date=params.date;
+            steps[foundItem].dist=parseFloat(params.dist);
+            steps[foundItem].timestamp=getTimestamp(params.date);
+            return [...steps];
+            });
         }
         setEditObj(null);
 
     };
     const onEdit = id =>{
-        console.log(id);
         const foundStep=steps.find((step)=>(step.id===id));
         setEditObj(foundStep);
 
@@ -56,7 +58,7 @@ function StepsForm(props) {
         setSteps(steps.filter(step=>step.id!==id));
     };
     return (
-        <div class={'app-form'}>
+        <div className={'app-form'}>
             <InputForm submitFunc={addData} editObj={editObj}  />
             <Data steps={steps} onEdit={onEdit} onDelete={onDelete}/>
         </div>

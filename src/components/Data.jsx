@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import StepsModel from "../models/StepsModel";
 
 Data.propTypes = {
-    
+    steps: PropTypes.arrayOf(PropTypes.instanceOf(StepsModel)),
+    onEdit: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired
 };
 
 function Data(props) {
