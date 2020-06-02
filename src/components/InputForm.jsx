@@ -69,11 +69,6 @@ function InputForm(props) {
         }
     };
 
-
-
-
-
-
     return (
         <div  >
             <form className={"input-form"} onSubmit={formSubmit}>
@@ -88,5 +83,9 @@ function InputForm(props) {
         </div>
     );
 }
+
+InputForm.defaultProps={
+    editObj:null
+};
 
 export default InputForm;

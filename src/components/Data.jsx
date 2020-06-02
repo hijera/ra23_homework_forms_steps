@@ -43,4 +43,8 @@ function Data(props) {
     );
 }
 
+Data.defaultProps={
+    steps:[]
+};
+
 export default Data;
